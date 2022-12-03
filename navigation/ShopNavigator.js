@@ -7,9 +7,10 @@ import ProductDetailScreen from "../screens/shop/ProductDetailScreen";
 
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
-import { HeaderButton } from "../components/UI/HeaderButton";
+import CustomHeaderButton from "../components/UI/HeaderButton";
 
 import Colors from "../constants/Colors";
+import CartScreen from "../screens/shop/CartScreen";
 
 const productsNavigator = createStackNavigator();
 
@@ -27,25 +28,26 @@ function productStack() {
       <productsNavigator.Screen
         name="All Products"
         component={ProductOverviewScreen}
-        options={{
+        options={({ navigation }) => ({
           headerRight: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
               <Item
                 title="Cart"
                 iconName={Platform.OS === "android" ? "md-cart" : "ios-cart"}
                 onPress={() => {
-                  alert("cart");
+                  navigation.navigate("cartScreen");
                 }}
               />
             </HeaderButtons>
           ),
-        }}
+        })}
       />
       <productsNavigator.Screen
         name="Product Details"
         component={ProductDetailScreen}
         options={({ route }) => ({ title: route.params.productTitle })}
       />
+      <productsNavigator.Screen name="cartScreen" component={CartScreen} />
     </productsNavigator.Navigator>
   );
 }

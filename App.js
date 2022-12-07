@@ -11,12 +11,14 @@ import { Provider } from "react-redux";
 
 import productsReducer from "./store/reducers/product";
 import cartReducer from "./store/reducers/cart";
+import orderReducer from "./store/reducers/orders";
 
 import ShopNavigator from "./navigation/ShopNavigator";
 
 const rootReducer = combineReducers({
   products: productsReducer,
   cart: cartReducer,
+  orders: orderReducer,
 });
 
 const store = createStore(rootReducer);
@@ -31,7 +33,6 @@ const fetchFonts = () => {
 };
 
 export default function App() {
-  const [fontLoaded, setFontLoaded] = useState(false);
   const [appIsReady, setAppIsReady] = useState(false);
 
   useEffect(() => {

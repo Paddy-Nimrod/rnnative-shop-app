@@ -23,7 +23,9 @@ const CartScreen = (props) => {
         sum: state.cart.items[key].sum,
       });
     }
-    return transformedCart;
+    return transformedCart.sort((a, b) => {
+      a.productId > b.productId ? 1 : -1;
+    });
   });
 
   const dispatch = useDispatch();
@@ -39,6 +41,7 @@ const CartScreen = (props) => {
           color={Colors.primary}
           title="Order Now"
           disabled={cartItemsList.length === 0}
+          onPress={() => alert("order placed")}
         />
       </View>
       <FlatList

@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import React, { useState, useEffect, useCallback } from "react";
 
 import { StatusBar } from "expo-status-bar";
@@ -41,9 +42,8 @@ export default function App() {
         await fetchFonts();
       } catch (e) {
         console.warn(e);
-      } finally {
-        setAppIsReady(true);
       }
+      setAppIsReady(true);
     }
 
     prepare();

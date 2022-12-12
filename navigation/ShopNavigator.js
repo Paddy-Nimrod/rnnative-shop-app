@@ -1,20 +1,32 @@
 import { createStackNavigator } from "@react-navigation/stack";
 
+import { createDrawerNavigator } from "@react-navigation/drawer";
+
 import { Platform } from "react-native";
 
 import ProductOverviewScreen from "../screens/shop/ProductOverviewScreen";
 import ProductDetailScreen from "../screens/shop/ProductDetailScreen";
+import CartScreen from "../screens/shop/CartScreen";
+import OrdersScreen from "../screens/shop/OrderScreen";
 
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import CustomHeaderButton from "../components/UI/HeaderButton";
 
 import Colors from "../constants/Colors";
-import CartScreen from "../screens/shop/CartScreen";
 
 const productsNavigator = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
-function productStack() {
+const OrdersNavigator = () => {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="My Orders" component={OrdersScreen} />
+    </Drawer.Navigator>
+  );
+};
+
+const productStack = () => {
   return (
     <productsNavigator.Navigator
       screenOptions={{
@@ -50,6 +62,6 @@ function productStack() {
       <productsNavigator.Screen name="cartScreen" component={CartScreen} />
     </productsNavigator.Navigator>
   );
-}
+};
 
 export default productStack;
